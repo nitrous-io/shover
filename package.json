@@ -1,0 +1,31 @@
+{
+  "name": "shover"
+, "description": "provides realtime updates for the web app"
+, "author": "Nitrous.IO"
+, "version": "0.0.1"
+, "private": true
+, "main": "./app"
+, "dependencies": {
+    "coffee-script" : "1.x.x"
+  , "express"       : "3.4.x"
+  , "connect"       : "2.11.x"
+  , "async"         : "0.2.x"
+  , "underscore"    : "1.5.x"
+  , "sockjs"        : "0.3.x"
+  , "action-base"   : "git+ssh://git@github.com:action-io/action-base.git#42b478102618ac13ef24911188e0c32659502179"
+  }
+, "devDependencies": {
+    "mocha"        : "1.14.x"
+  , "sinon"        : "1.7.x"
+  , "chai"         : "1.8.x"
+  , "sinon-chai"   : "2.4.x"
+  , "supertest"    : "0.8.x"
+  }
+, "engines": {
+    "node"         : "0.8.x"
+  , "npm"          : "1.2.x"
+  }
+, "scripts": {
+    "test": "make test"
+  }
+}
