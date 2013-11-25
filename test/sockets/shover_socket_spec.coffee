@@ -97,10 +97,19 @@ describe 'ShoverSocket', ->
         expect(socket5.send).not.to.have.been.called
         ShoverSocket.publish(123, 'bar', lol: 'hehe', blah: 'beeboo')
         expect(socket1.send).to.have.been.calledWith('bar', lol: 'hehe', blah: 'beeboo')
+        socket1.send.reset()
         expect(socket2.send).not.to.have.been.called
         expect(socket3.send).not.to.have.been.called
         expect(socket4.send).not.to.have.been.called
         expect(socket5.send).to.have.been.calledWith('bar', lol: 'hehe', blah: 'beeboo')
+        socket5.send.reset()
+        # non existent user id
+        ShoverSocket.publish(555, 'foo', bar: 123)
+        expect(socket1.send).not.to.have.been.called
+        expect(socket2.send).not.to.have.been.called
+        expect(socket3.send).not.to.have.been.called
+        expect(socket4.send).not.to.have.been.called
+        expect(socket5.send).not.to.have.been.called
 
     describe '.broadcast', ->
       it 'calls #send on all sockets', ->
