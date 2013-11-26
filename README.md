@@ -1,27 +1,19 @@
 Shover
 ======
 
-### Authentication
+Must be HTTPS protected.
 
-Use basic auth:
-
-Username: `SHOVER_USERNAME`
-Password: `SHOVER_PASSWORD`
-
-### POST /p - publish
+### POST /publish
 
 Params:
 
-`u` - user id
-`e` - event name
-`d` - data in json
+`p` - MessageVerifier signed payload of `[user_id, event_name, data_hash]`
 
-### POST /b - broadcast
+### POST /broadcast
 
 Params:
 
-`e` - event name
-`d` - data in json
+`p` - MessageVerifier signed payload of `[event_name, data_hash]`
 
 -----
 Copyright (c) 2013 Irrational Industries Inc. All Rights Reserved.

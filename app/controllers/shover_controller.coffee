@@ -1,26 +1,21 @@
 ApplicationController = require './application_controller'
 ShoverSocket = require '../sockets/shover_socket'
+app = require '../../app'
 
 module.exports = class ShoverController extends ApplicationController
   publish: ->
-    @_processRequest (@params.u? && @params.e?), (data) =>
-      ShoverSocket.publish @params.u, @params.e, data
+    @_processRequest (payload) =>
+      ShoverSocket.publish payload[0], payload[1], payload[2]
 
   broadcast: ->
-    @_processRequest @params.e?, (data) =>
-      ShoverSocket.broadcast @params.e, data
+    @_processRequest (payload) =>
+      ShoverSocket.broadcast payload[0], payload[1]
 
-  _returnInvalidParams: ->
-    @response.send 400, error: 'invalid params'
-
-  _processRequest: (prerequisite, cb) ->
-    unless prerequisite
-      @_returnInvalidParams()
-      return
-    try
-      data = JSON.parse(@params.d)
-    catch e
-      @_returnInvalidParams()
-      return
-    @response.send 200, status: 'ok'
-    cb(data)
+  _processRequest: (cb) ->
+    if !@params.p?
+      @response.send 400, error: 'payload not found'
+    else if payload = app.messageVerifier.verify(@params.p)
+      @response.send 200, status: 'ok'
+      cb(payload)
+    else
+      @response.send 400, error: 'invalid payload'

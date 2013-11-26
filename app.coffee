@@ -21,7 +21,7 @@ require('./config/application')(app)
 MessageVerifier = actionBase.MessageVerifier
 AuthTokenVerifier = actionBase.AuthTokenVerifier
 app.messageVerifier = new MessageVerifier app.settings.secretToken
-app.authTokenVerifier = new AuthTokenVerifier 'rainbow', app.messageVerifier
+app.authTokenVerifier = new AuthTokenVerifier 'shover', app.messageVerifier
 
 # routes
 require('./config/routes')(app)

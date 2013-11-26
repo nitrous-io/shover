@@ -7,12 +7,12 @@ module.exports = class ShoverSocket extends BaseSocket
   @channels: {}
 
   @publish: (userId, event, data) ->
-    if channel = @channels[userId]
+    if @channels.hasOwnProperty(userId) && channel = @channels[userId]
       for socket in channel
         socket.send event, data
 
   @broadcast: (event, data) ->
-    for userId, channel of @channels
+    for own userId, channel of @channels
       for socket in channel
         socket.send event, data
 
