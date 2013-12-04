@@ -19,3 +19,16 @@ describe 'HomeController', ->
     it 'returns 200 OK', ->
       expect(res.statusCode).to.equal 200
 
+  describe 'GET /ping', ->
+    err = res = null
+
+    beforeEach (done) ->
+      err = res = null
+      request(app)
+        .get('/ping')
+        .end (e, r) ->
+          err = e; res = r; done()
+
+    it 'returns 200 OK', ->
+      expect(res.statusCode).to.equal 200
+
