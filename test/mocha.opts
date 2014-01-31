@@ -1,4 +1,4 @@
---require coffee-script ./test/spec_helper.coffee
+--require coffee-script/register ./test/spec_helper.coffee
 --reporter dot
 --timeout 1000
 --ui bdd

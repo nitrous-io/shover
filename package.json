@@ -6,7 +6,7 @@
 , "private": true
 , "main": "./app"
 , "dependencies": {
-    "coffee-script" : "1.x.x"
+    "coffee-script" : "1.7.x"
   , "express"       : "3.4.x"
   , "connect"       : "2.11.x"
   , "async"         : "0.2.x"
